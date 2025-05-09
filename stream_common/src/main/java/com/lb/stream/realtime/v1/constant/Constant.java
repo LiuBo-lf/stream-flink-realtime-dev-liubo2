@@ -4,7 +4,7 @@ package com.lb.stream.realtime.v1.constant;
  * @ Package com.lb.stream.realtime.v1.constant.Constant
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:22
- * @ description:
+ * @ description:常亮类
  * @ version 1.0
  */
 public class Constant {

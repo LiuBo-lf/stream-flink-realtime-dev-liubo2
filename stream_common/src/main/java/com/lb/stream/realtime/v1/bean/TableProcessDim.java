@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
  * @ Package com.lb.stream.realtime.v1.bean.TableProcessDim
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:19
- * @ description: 
+ * @ description:DIM层封装的类
  * @ version 1.0
 */
 @AllArgsConstructor

@@ -14,7 +14,18 @@ import redis.clients.jedis.JedisPoolConfig;
  * @ Package com.lb.stream.realtime.v1.utils.RedisUtil
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:31
- * @ description:
+ * @ description:操作Redis的工具类
+ * 旁路缓存
+ * 思路：先从缓存中获取维度数据，如果获取到了(缓存命中)，直接将缓存中的维度返回；如果在缓存中没有找到要关联的维度，发送请求到HBase中查询维度，
+ * 并将查询的结果放到缓存中缓存起来，方便下次查询使用
+ * 选型：
+ * 状态：             性能很好，维护性差
+ * redis:            性能不错，维护性好     √
+ * 关于Redis的一些设置
+ * key:    维度表名:主键值
+ * type:   string
+ * expire: 1day   避免冷数据常驻内存，给内存带来压力
+ * 注意：如果维度数据发生了变化，需要将缓存的数据清除掉
  * @ version 1.0
  */
 public class RedisUtil {

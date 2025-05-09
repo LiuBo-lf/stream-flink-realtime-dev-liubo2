@@ -13,6 +13,8 @@ import java.util.Date;
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:29
  * @ description:
+ * 注意：使用SimpleDateFormat进行日期转换的话，存在线程安全的问题
+ * 建议封装日期工具类的时候，使用jdk1.8提供的日期包下的类完成相关功能
  * @ version 1.0
  */
 public class DateFormatUtil {

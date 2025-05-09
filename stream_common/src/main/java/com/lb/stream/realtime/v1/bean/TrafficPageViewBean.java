@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  * @ Package com.lb.stream.realtime.v1.bean.TrafficPageViewBean
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:21
- * @ description: 
+ * @ description:实体类对象
  * @ version 1.0
 */
 @Data

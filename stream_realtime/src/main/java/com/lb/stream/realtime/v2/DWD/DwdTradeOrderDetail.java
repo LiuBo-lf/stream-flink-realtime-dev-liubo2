@@ -1,6 +1,7 @@
 package com.lb.stream.realtime.v2.DWD;
 
 import com.lb.stream.realtime.v1.constant.Constant;
+import com.lb.stream.realtime.v1.utils.SQLUtil;
 import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;

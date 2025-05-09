@@ -6,7 +6,7 @@ import com.lb.stream.realtime.v1.constant.Constant;
  * @ Package com.lb.stream.realtime.v1.utils.SQLUtil
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:31
- * @ description:
+ * @ description:sql工具类
  * @ version 1.0
  */
 public class SQLUtil {

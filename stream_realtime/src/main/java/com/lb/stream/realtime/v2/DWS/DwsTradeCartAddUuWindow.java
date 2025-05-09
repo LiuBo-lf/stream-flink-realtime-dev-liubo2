@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lb.stream.realtime.v1.bean.CartAddUuBean;
 import com.lb.stream.realtime.v1.function.BeanToJsonStrMapFunction;
+import com.lb.stream.realtime.v1.utils.DateFormatUtil;
 import com.lb.stream.realtime.v1.utils.FlinkSinkUtil;
+import com.lb.stream.realtime.v1.utils.FlinkSourceUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
@@ -32,7 +34,7 @@ import org.apache.flink.util.Collector;
  * @ Package com.lb.stream.realtime.v2.DWS.DwsTradeCartAddUuWindow
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:55
- * @ description:
+ * @ description:加购独立用户
  * @ version 1.0
  */
 public class DwsTradeCartAddUuWindow {

@@ -19,7 +19,7 @@ import java.util.Set;
  * @ Package com.lb.stream.realtime.v1.utils.HBaseUtil
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:30
- * @ description:
+ * @ description:HBASE工具类
  * @ version 1.0
  */
 public class HBaseUtil {

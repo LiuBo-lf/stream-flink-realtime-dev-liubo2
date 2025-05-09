@@ -5,8 +5,14 @@ import com.lb.stream.realtime.v1.bean.DimJoinFunction;
 import com.lb.stream.realtime.v1.constant.Constant;
 import com.lb.stream.realtime.v1.utils.HBaseUtil;
 import com.lb.stream.realtime.v1.utils.RedisUtil;
-import org.apache.flink.streaming.api.functions.async.RichAsyncFunction;
 import io.lettuce.core.api.StatefulRedisConnection;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.streaming.api.functions.async.ResultFuture;
+import org.apache.flink.streaming.api.functions.async.RichAsyncFunction;
+import org.apache.hadoop.hbase.client.AsyncConnection;
+
+import java.util.Collections;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -23,7 +29,7 @@ import java.util.function.Supplier;
  * @ Package com.lb.stream.realtime.v1.function.DimAsyncFunction
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:25
- * @ description:
+ * @ description: 发送异步请求进行维度关联的模板类
  * @ version 1.0
  */
 public abstract class DimAsyncFunction<T> extends RichAsyncFunction<T,T> implements DimJoinFunction<T> {

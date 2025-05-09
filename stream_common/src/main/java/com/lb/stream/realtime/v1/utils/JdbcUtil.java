@@ -12,7 +12,7 @@ import java.util.List;
  * @ Package com.lb.stream.realtime.v1.utils.JdbcUtil
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:30
- * @ description:
+ * @ description: 通过JDBC操作MySQL数据库
  * @ version 1.0
  */
 public class JdbcUtil {

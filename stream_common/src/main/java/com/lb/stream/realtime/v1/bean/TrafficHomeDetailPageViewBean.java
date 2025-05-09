@@ -8,7 +8,7 @@ import lombok.Data;
  * @ Package com.lb.stream.realtime.v1.bean.TrafficHomeDetailPageViewBean
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:21
- * @ description: 
+ * @ description:页面
  * @ version 1.0
 */
 @Data

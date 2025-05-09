@@ -21,7 +21,7 @@ import java.util.Properties;
  * @ Package com.lb.stream.realtime.v1.utils.FlinkSinkUtil
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:29
- * @ description:
+ * @ description:获取相关Source的工具类
  * @ version 1.0
  */
 public class FlinkSinkUtil {

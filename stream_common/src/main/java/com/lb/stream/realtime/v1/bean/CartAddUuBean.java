@@ -7,7 +7,7 @@ import lombok.Data;
  * @ Package com.lb.stream.realtime.v1.bean.CartAddUuBean
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:17
- * @ description:
+ * @ description: 加购独立用户
  * @ version 1.0
  */
 @Data
