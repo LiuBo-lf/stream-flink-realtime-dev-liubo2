@@ -8,7 +8,9 @@ import com.lb.stream.realtime.v1.utils.RedisUtil;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
+import org.apache.hadoop.hbase.client.Connection;
 import redis.clients.jedis.Jedis;
+
 
 /**
  * @ Package com.lb.stream.realtime.v1.function.HBaseSinkFunction
@@ -44,17 +46,15 @@ public class HBaseSinkFunction extends RichSinkFunction<Tuple2<JSONObject, Table
 
         String rowKey = jsonObj.getString(tableProcessDim.getSinkRowKey());
 
-        if("d".equals(type)){
-            HBaseUtil.delRow(hbaseConn, Constant.HBASE_NAMESPACE,sinkTable,rowKey);
-        }else{
+        if ("d".equals(type)) {
+            HBaseUtil.delRow(hbaseConn, Constant.HBASE_NAMESPACE, sinkTable, rowKey);
+        } else {
             String sinkFamily = tableProcessDim.getSinkFamily();
-            HBaseUtil.putRow(hbaseConn, Constant.HBASE_NAMESPACE,sinkTable,rowKey,sinkFamily,jsonObj);
+            HBaseUtil.putRow(hbaseConn, Constant.HBASE_NAMESPACE, sinkTable, rowKey, sinkFamily, jsonObj);
         }
-        if("u".equals(type)||"d".equals(type)){
+        if ("u".equals(type) || "d".equals(type)) {
             String key = RedisUtil.getKey(sinkTable, rowKey);
             jedis.del(key);
         }
     }
-
-
 }

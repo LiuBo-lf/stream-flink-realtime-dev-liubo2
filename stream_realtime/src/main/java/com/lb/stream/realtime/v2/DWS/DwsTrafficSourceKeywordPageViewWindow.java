@@ -11,7 +11,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  * @ Package com.lb.stream.realtime.v2.DWS.DwsTrafficSourceKeywordPageViewWindow
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:56
- * @ description:
+ * @ description: 搜素关键词聚合统计 zk、kafka、flume、doris
  * @ version 1.0
  */
 public class DwsTrafficSourceKeywordPageViewWindow {

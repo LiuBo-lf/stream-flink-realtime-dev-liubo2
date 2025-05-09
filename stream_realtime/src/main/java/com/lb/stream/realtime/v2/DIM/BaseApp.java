@@ -25,7 +25,6 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.ProcessFunction;
 import org.apache.flink.util.Collector;
 import org.apache.hadoop.hbase.client.Connection;
-
 /**
  * @ Package com.lb.stream.realtime.v2.DIM.BaseApp
  * @ Author  liu.bo

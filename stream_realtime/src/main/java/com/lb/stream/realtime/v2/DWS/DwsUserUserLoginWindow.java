@@ -39,23 +39,31 @@ import org.apache.flink.util.Collector;
 */
 public class DwsUserUserLoginWindow {
     public static void main(String[] args) throws Exception {
+        //初始化 Flink 执行环境。
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
+        //设置并行度为1。
         env.setParallelism(1);
 
+        //启用每5秒一次的精确一次检查点。
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
 
+        //设置重启策略为固定延迟重启。
         env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, 3000L));
 
+        //从 Kafka 获取数据源。
         KafkaSource<String> kafkaSource = FlinkSourceUtil.getKafkaSource("dwd_traffic_page", "dws_user_user_login_window");
 
+        //将 Kafka 数据源转换为 Flink 数据流。
         DataStreamSource<String> kafkaStrDS
                 = env.fromSource(kafkaSource, WatermarkStrategy.noWatermarks(), "Kafka_Source");
 
+        //将 JSON 字符串数据流转换为 JSON 对象数据流。
         SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(JSON::parseObject);
 
 //        jsonObjDS.print();
 
+        //过滤出包含用户ID且上一个页面ID为登录页面或为空的数据。
         SingleOutputStreamOperator<JSONObject> filterDS = jsonObjDS.filter(
                 new FilterFunction<JSONObject>() {
                     @Override
@@ -70,6 +78,7 @@ public class DwsUserUserLoginWindow {
 
 //        filterDS.print();
 
+        //为过滤后的数据流分配时间戳和水印。
         SingleOutputStreamOperator<JSONObject> withWatermarkDS = filterDS.assignTimestampsAndWatermarks(
                 WatermarkStrategy
                         .<JSONObject>forMonotonousTimestamps()
@@ -83,8 +92,10 @@ public class DwsUserUserLoginWindow {
                         )
         );
 
+        //按用户ID对数据流进行分组。
         KeyedStream<JSONObject, String> keyedDS = withWatermarkDS.keyBy(jsonObj -> jsonObj.getJSONObject("common").getString("uid"));
 
+        //处理每个用户的数据流，计算用户登录次数和回访次数。
         SingleOutputStreamOperator<UserLoginBean> beanDS = keyedDS.process(
                 new KeyedProcessFunction<String, JSONObject, UserLoginBean>() {
                     private ValueState<String> lastLoginDateState;
@@ -129,8 +140,10 @@ public class DwsUserUserLoginWindow {
 
 //        beanDS.print();
 
+        //将处理后的数据流按10秒滚动窗口进行聚合。
         AllWindowedStream<UserLoginBean, TimeWindow> windowDS = beanDS.windowAll(TumblingEventTimeWindows.of(Time.seconds(10)));
 
+        //在每个窗口中对用户登录数据进行聚合，并生成最终的 UserLoginBean 对象。
         SingleOutputStreamOperator<UserLoginBean> reduceDS = windowDS.reduce(
                 new ReduceFunction<UserLoginBean>() {
                     @Override
@@ -155,13 +168,17 @@ public class DwsUserUserLoginWindow {
                 }
         );
 
+        //将聚合后的 UserLoginBean 对象转换为 JSON 字符串。
         SingleOutputStreamOperator<String> jsonMap = reduceDS
                 .map(new BeanToJsonStrMapFunction<>());
 
+        //打印 JSON 字符串数据流。
         jsonMap.print();
 
+        //将 JSON 字符串数据流写入 Doris 数据库。
         jsonMap.sinkTo(FlinkSinkUtil.getDorisSink("dws_user_user_login_window"));
 
+        //执行 Flink 任务。
         env.execute("DwsUserUserLoginWindow");
     }
 }

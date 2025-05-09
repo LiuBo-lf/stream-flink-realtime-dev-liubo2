@@ -34,7 +34,7 @@ import org.apache.flink.util.Collector;
  * @ Package com.lb.stream.realtime.v2.DWS.DwsTrafficHomeDetailPageViewWindow
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:56
- * @ description:
+ * @ description: 首页、详情页聚合统计
  * @ version 1.0
  */
 public class DwsTrafficHomeDetailPageViewWindow {
