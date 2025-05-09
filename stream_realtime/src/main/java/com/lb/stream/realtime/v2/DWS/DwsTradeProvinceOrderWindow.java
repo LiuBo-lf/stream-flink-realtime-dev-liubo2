@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
  * @ Package com.lb.stream.realtime.v2.DWS.DwsTradeProvinceOrderWindow
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:55
- * @ description:
+ * @ description:订单窗口
  * @ version 1.0
  */
 public class DwsTradeProvinceOrderWindow {

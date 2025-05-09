@@ -13,7 +13,7 @@ import java.time.Duration;
  * @ Package com.lb.stream.realtime.v2.DWD.DwdTradeOrderRefund
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:51
- * @ description:
+ * @ description:订单退款
  * @ version 1.0
  */
 public class DwdTradeOrderRefund {

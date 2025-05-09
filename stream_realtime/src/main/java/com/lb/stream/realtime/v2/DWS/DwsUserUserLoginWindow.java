@@ -34,7 +34,7 @@ import org.apache.flink.util.Collector;
  * @ Package com.lb.stream.realtime.v2.DWS.DwsUserUserLoginWindow
  * @ Author  liu.bo
  * @ Date  2025/5/9 11:00
- * @ description: 
+ * @ description: 用户用户登录窗口
  * @ version 1.0
 */
 public class DwsUserUserLoginWindow {

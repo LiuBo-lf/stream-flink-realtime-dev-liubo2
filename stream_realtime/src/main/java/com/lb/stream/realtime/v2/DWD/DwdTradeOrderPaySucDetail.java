@@ -13,7 +13,7 @@ import java.time.Duration;
  * @ Package com.lb.stream.realtime.v2.DWD.DwdTradeOrderPaySucDetail
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:51
- * @ description:
+ * @ description: Suc 详细信息
  * @ version 1.0
  */
 public class DwdTradeOrderPaySucDetail {

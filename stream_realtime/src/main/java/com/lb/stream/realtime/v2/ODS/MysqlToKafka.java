@@ -24,18 +24,13 @@ public class MysqlToKafka {
         env.setParallelism(1);
 
         // 创建MySQL数据源，使用FlinkSourceUtil工具类中的方法获取MySQL CDC数据源
-        // 参数 "realtime_v1" 表示数据库名，"*" 表示同步所有表
         MySqlSource<String> realtimeV1 = FlinkSourceUtil.getMySqlSource("realtime_v1", "*");
 
-        // 从MySQL数据源创建Flink数据流
-        // 使用WatermarkStrategy.noWatermarks() 因为CDC数据源已经处理了时间戳
+        // 从MySQL数据源创建Flink数据流CDC数据源处理时间戳
         DataStreamSource<String> mySQLSource = env.fromSource(realtimeV1, WatermarkStrategy.noWatermarks(), "MySQL Source");
 
-        // 打印数据流（注释掉的代码，用于调试）
         // mySQLSource.print();
 
-        // 创建Kafka Sink，使用FlinkSinkUtil工具类中的方法获取Kafka Sink
-        // 参数 "topic_db" 表示Kafka的主题名
         KafkaSink<String> topic_db = FlinkSinkUtil.getKafkaSink("topic_db");
 
         // 将MySQL数据流同步到Kafka Sink

@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  * @ Package com.lb.stream.realtime.v2.DWS.DwsTradeSkuOrderWindow
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:56
- * @ description:下单聚会
+ * @ description:订单聚会
  * @ version 1.0
  */
 public class DwsTradeSkuOrderWindow {

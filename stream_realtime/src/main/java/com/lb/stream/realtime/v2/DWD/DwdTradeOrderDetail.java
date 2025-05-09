@@ -13,7 +13,7 @@ import java.time.Duration;
  * @ Package com.lb.stream.realtime.v2.DWD.DwdTradeOrderDetail
  * @ Author  liu.bo
  * @ Date  2025/5/9 10:50
- * @ description:
+ * @ description:订单详情
  * @ version 1.0
  */
 public class DwdTradeOrderDetail {
